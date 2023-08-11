@@ -1,0 +1,8 @@
+.card-img-centre {
+    width: 166.25px;
+    /* Set the desired width */
+    height: 194.67px;
+    /* Set the desired height */
+    object-fit: fill;
+    /* Maintain aspect ratio and cover area */
+}

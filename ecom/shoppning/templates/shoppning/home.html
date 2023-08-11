@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='css/main.css' rel="stylesheet" type="text/css">
+    <!-- css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <style>
+        .discounted-price {
+            color: #e53935;
+            /* Adjust color for discounted price */
+        }
+        
+        .original-price {
+            color: #999;
+            /* Adjust color for original price */
+            text-decoration: line-through;
+            /* Add strikethrough effect */
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" ,style="background-color: mediumblue;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="C:\Users\USER\Desktop\main\image\logo.jpg" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  More
+                </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Notification Preference</a></li>
+                            <li><a class="dropdown-item" href="#">24*7 Customer support</a></li>
+                            <li><a class="dropdown-item" href="#">Advertise</a></li>
+                            <li><a class="dropdown-item" href="#">  Download App</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+
+                    <button class="btn btn-danger" type="submit"><a href="register" style="color: whitesmoke;">Register</a></button>
+                    <button class="btn btn-primary" type="submit"><a href="login"  style="color: antiquewhite;">Log in</a></button>
+
+
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+    </nav>
+    <h1 style="text-align: center;">Welcom to Pooja General Store</h1> <br>
+    <div class="container mt-5">
+
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ product.image.url }}" class="card-img-centre" alt="{{ product.name }} Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <h5 class="card-text">{{ product.description }}</h5>
+
+                        {% if product.discount_percent > 0 %}
+                        <p class="original-price">&#8377;{{ product.price }}</p>
+                        <h4 class="discount percent">{{ product.discount_percent }}% off</h4>
+
+                        <h4 class="discounted-price">Sale Price: &#8377;{{ product.discounted_price|floatformat:2 }}</h4>
+                        {% else %}
+                        <h3 class="discounted-price">Price: &#8377;{{ product.price }}</h3>
+                        {% endif %}
+                        <a href="#" class="btn btn-primary">Buy Now</a>
+                        <a href="#" class="btn btn-success">Add to cart</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <script>
+        // JavaScript
+        const loginButton = document.getElementById('login-button');
+        const menu = document.querySelector('.menu');
+
+        loginButton.addEventListener('mouseenter', () => {
+            menu.style.display = 'block';
+        });
+
+        loginButton.addEventListener('mouseleave', () => {
+            menu.style.display = 'none';
+        });
+    </script>
+
+</html>

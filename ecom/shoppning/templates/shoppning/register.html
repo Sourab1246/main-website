@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Registration</title>
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("id_password").value;
+            var confirm_password = documnt.getElementById("id_confirm_password").value;
+
+            if (password != confirm_password) {
+                alert("password does not match.");
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2>User Registration</h2>
+    <form method="post" onsubmit="return checkPassword();">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+
+</body>
+
+
+</html>
