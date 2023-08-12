@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class User(models.Model):
@@ -42,7 +45,28 @@ class Products(models.Model):
     
     def __str__(self):
         return self.name
+
+class Cart(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE )
+    items=models.ManyToManyField(Products,through='CartItem')
+
+    def  total_items(self):
+        return self.items.count()
+
+    def total_price(self):
+        return sum(cart_item.product.price * cart_item.quantity for cart_item in self.cartitem_set.all())   
+
+   
+
+class CartItem(models.Model):
+    cart=models.ForeignKey(Cart,on_delete=models.CASCADE)
+    product=models.ForeignKey(Products,on_delete=models.CASCADE)
+    quantity=models.PositiveSmallIntegerField(default=1)
     
+    
+
+    
+
        
 
 

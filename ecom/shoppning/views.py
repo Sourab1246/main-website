@@ -1,8 +1,11 @@
 from django.shortcuts import render,redirect
-from .models import Products
+from .models import Products,Cart,CartItem,User
 from .forms import RegistrationForm,LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required
+
+
 
 # Create your views here.
 def home(request):
@@ -47,11 +50,26 @@ def profile(request):
 
 def product_detail(request,product_id):
         return render(request,'shoppning/product_detail.html',{'product': product})
+@login_required
+def add_to_cart(request,product_id):
+    
+    product=get_object_or_404(Product,pk=product_id)
+    cart,created=Cart.objects.get_or_create(user=request.user)
+    cart_item,cart_item_created=CartItem.objects.get_or_create(cart=cart,product=product)
+    if not cart_item_created:
+        cart_item.quantity+=1
+        cart_item.save()
+        messages.info(request,"This item quantity has been updated")
+    return redirect('cart')   
 
-def cart(request):
-    return render(request,'shoppning/cart.html')   
 
-def checkout(request):
+
+def view_cart(request):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    return render(request, 'shoppning/cart.html', {'cart': cart})
+
+
+def checkout(request):           
     return render(request,'shoppning/checkout.html')
 
 def order_confirmation(request):

@@ -23,6 +23,12 @@
             text-decoration: line-through;
             /* Add strikethrough effect */
         }
+        
+        .icon {
+            margin-left: -4px!important;
+            height: 50px;
+            width: 50px;
+        }
     </style>
 
 </head>
@@ -31,7 +37,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" ,style="background-color: mediumblue;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="C:\Users\USER\Desktop\main\image\logo.jpg" alt="logo"></a>
+            <a class="navbar-brand" href="#"><img src="images\logo" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -63,6 +69,13 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
+                <div class="cartContainer col-xs-11 reset-padding">
+                    <div class="cartInner">
+                        <span class="cartTextSpan">Cart</span>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPNOW1MGlW14EIZgAzGPF3QiKOcwe81MlGbg&usqp=CAU" alt="" class="icon">
+                        <i class="sd-icon sd-icon-cart-icon-white-2"><span class="cartQuantity hidden">0</span></i>
+                    </div>
+                </div>
                 <form class="d-flex">
 
                     <button class="btn btn-danger" type="submit"><a href="register" style="color: whitesmoke;">Register</a></button>
@@ -71,6 +84,8 @@
 
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
+
+
                 </form>
             </div>
         </div>
@@ -97,7 +112,7 @@
                         <h3 class="discounted-price">Price: &#8377;{{ product.price }}</h3>
                         {% endif %}
                         <a href="#" class="btn btn-primary">Buy Now</a>
-                        <a href="#" class="btn btn-success">Add to cart</a>
+                        <a href="cart" class="btn btn-success">Add to cart</a>
 
                     </div>
                 </div>
